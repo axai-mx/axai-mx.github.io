@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://jackbravo.github.io/gatsby-starter-i18n-blog/',
+    siteUrl: 'https://axai-mx.github.io/gatsby-site/',
     author: 'Joaquín Bravo Contreras',
-    title: 'Gatsby Starter i18n Blog',
-    description: 'A starter blog with i18n',
+    title: 'Axai, Soluciones Avanzadas',
+    description: 'Despacho de desarrollo web en Guadalajara',
   },
-  pathPrefix: '/gatsby-starter-i18n-blog',
+  pathPrefix: '/gatsby-site',
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
