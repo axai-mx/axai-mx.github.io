@@ -57,8 +57,6 @@ Los argumentos sirven para personalizar tu vista de acuerdo a información que r
     
 2.  Vamos a agregar un argumento: Grupos: Grupos. Este argumento lo que hace es mostrar únicamente los nodos que pertenezcan al grupo que especifiques en el argumento. Add.
     
-    ![Agregar grupo](argumento_grupo.png)
-    
 3.  Este argumento de grupo debe aparecer antes del argumento de fecha, así que hay que reordenarlos presionando este ícono:
     
 4.  Hay que modificar la ruta de la vista de página para que sepa que forzosamente debe llevar un argumento, así que la vamos a cambiar de calendara calendario/%
