@@ -70,7 +70,7 @@ export const blogIndexFragment = graphql`
         sort: { fields: [frontmatter___date], order: DESC }
         filter: { frontmatter: {
           language: { eq: $language }
-          type: { eq: null }
+          type: { eq: "blog" }
         }}
       ) {
       edges {

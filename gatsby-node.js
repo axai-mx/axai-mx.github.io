@@ -58,7 +58,7 @@ exports.createPages = ({ graphql, actions }) => {
                   sort: { fields: [frontmatter___date], order: DESC }, limit: 1000
                   filter: {frontmatter: {
                     language: { eq: "${language}" }
-                    type: { eq: null }
+                    type: { eq: "blog" }
                   }}
                 ) {
                 edges {
