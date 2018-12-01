@@ -2,10 +2,8 @@
 type: language
 language: en
 language_label: "English"
-title: "Gatsby Starter Blog"
-description: "A starter blog demonstrating what Gatsby can do."
+title: "Axai"
+description: "The drupal experts in Mexico."
 ---
 
-Written by **Kyle Mathews** who lives and works in San
-Francisco building useful things.
-[You should follow him on Twitter](https://twitter.com/kylemathews)
+We develop websites and web applications using Drupal, THE Content Management System.
