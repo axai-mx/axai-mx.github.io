@@ -45,7 +45,7 @@ class Layout extends React.Component {
               textDecoration: 'none',
               color: 'inherit',
             }}
-            to={'/'}
+            to={config.fields.slug}
           >
             {config.frontmatter.title}
           </Link>

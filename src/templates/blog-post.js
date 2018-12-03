@@ -80,7 +80,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!, $language: String!) {
     config:markdownRemark(frontmatter: {
       language: { eq: $language }
-      type: { eq: "language" }
+      type: { eq: "blog-index" }
     }) {
       html
       fields {
