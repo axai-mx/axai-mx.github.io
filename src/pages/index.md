@@ -2,6 +2,7 @@
 type: language
 language: en
 language_label: "English"
+menu_label: "Start"
 title: "Axai, the Drupal experts in Mexico"
 description: "Advanced solutions in content management."
 ---

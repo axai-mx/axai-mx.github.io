@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import LanguageSwitcher from './LanguageSwitcher'
 
 import { rhythm } from '../utils/typography'
+import Menu from './Menu';
 
 class Layout extends React.Component {
   render() {
@@ -61,7 +62,18 @@ class Layout extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
-        <LanguageSwitcher language={config.frontmatter.language} translations={translations}/>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            listStyle: 'none',
+            padding: 0,
+          }}
+        >
+          <Menu language={config.frontmatter.language}></Menu>
+          <LanguageSwitcher language={config.frontmatter.language} translations={translations}/>
+        </div>
         {header}
         {children}
       </div>
