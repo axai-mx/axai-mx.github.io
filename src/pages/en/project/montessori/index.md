@@ -5,7 +5,7 @@ date: "2014-05-21T03:33:00.000Z"
 user: "admin"
 language: "en"
 aliases: ["project/montessori","project/montessori"]
-image: "screen_shot_2014-10-02_at_2.56.22_pm.png"
+image: "screen_shot_2014-10-02_at_2.56.22_pm.jpg"
 projectUrl: "https://www.montessorird.com/"
 projectInfo: "e-commerce site"
 translations: ["es", "es/project/montessori"]
