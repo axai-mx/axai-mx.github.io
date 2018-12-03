@@ -3,7 +3,6 @@ import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
-import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import { rhythm } from '../utils/typography'
 
@@ -13,18 +12,14 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
     const siteTitle = get(config, 'frontmatter.title')
     const description = get(config, 'frontmatter.description')
-    const bio = get(config, 'html')
 
     return (
-      <Layout location={this.props.location} config={config}>
+      <Layout location={this.props.location} config={config} translations={config.frontmatter.translations}>
         <Helmet
           htmlAttributes={{ lang: this.props.pageContext.language }}
           meta={[{ name: 'description', content: description }]}
           title={siteTitle}
         />
-        <Bio>
-          <div dangerouslySetInnerHTML={{ __html: bio }} />
-        </Bio>
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
           return (
@@ -54,7 +49,7 @@ export const blogIndexFragment = graphql`
   query BlogPost($language: String!) {
     config:markdownRemark(frontmatter: {
       language: { eq: $language }
-      type: { eq: "language" }
+      type: { eq: "blog-index" }
     }) {
       html
       fields {
@@ -64,6 +59,7 @@ export const blogIndexFragment = graphql`
         title
         language
         description
+        translations
       }
     }
     allMarkdownRemark(
