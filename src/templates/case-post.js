@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Link,graphql } from 'gatsby'
+import Image from 'gatsby-image';
 import get from 'lodash/get'
 
 import Layout from '../components/Layout'
@@ -31,6 +32,7 @@ class CasePost extends React.Component {
         >
           {post.frontmatter.date}
         </p>
+        <Image sizes={post.frontmatter.image.childImageSharp.sizes} />
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
@@ -94,6 +96,16 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         translations
+        image {
+          childImageSharp {
+            sizes(maxWidth: 640, quality: 90) {
+              ...GatsbyImageSharpSizes_noBase64
+            }
+            resize(width: 420) {
+              src
+            }
+          }
+        }
       }
     }
   }

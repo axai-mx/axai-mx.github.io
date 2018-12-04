@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Link,graphql } from 'gatsby'
+import Image from 'gatsby-image';
 import get from 'lodash/get'
 
 import Bio from '../components/Bio'
@@ -14,6 +15,7 @@ class BlogPostTemplate extends React.Component {
     const siteBio = get(this, 'props.data.config.html')
     const siteDescription = post.excerpt
     const { previous, next } = this.props.pageContext
+    const image = post.frontmatter.image ? <Image sizes={post.frontmatter.image.childImageSharp.sizes} /> : ''
 
     return (
       <Layout location={this.props.location} config={this.props.data.config} translations={post.frontmatter.translations}>
@@ -33,6 +35,7 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
         </p>
+        {image}
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
@@ -99,6 +102,16 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         translations
+        image {
+          childImageSharp {
+            sizes(maxWidth: 640, quality: 90) {
+              ...GatsbyImageSharpSizes_noBase64
+            }
+            resize(width: 420) {
+              src
+            }
+          }
+        }
       }
     }
   }
