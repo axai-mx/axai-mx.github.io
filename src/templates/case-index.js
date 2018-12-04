@@ -1,11 +1,80 @@
 import React from 'react'
+import styled from "styled-components"
 import { Link, graphql } from 'gatsby'
+import Image from 'gatsby-image';
 import get from 'lodash/get'
+import sample from 'lodash/sample';
 import Helmet from 'react-helmet'
 
 import Bio from '../components/Bio'
 import Layout from '../components/Layout'
-import { rhythm } from '../utils/typography'
+
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  width: 100%;
+  margin: 2rem 0;
+`;
+
+const Item = styled.div`
+  position: relative;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+`;
+
+const Content = styled.div`
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  a {
+    color: #fff;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    padding: 2rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    &:hover {
+      color: #fff;
+      opacity: 1;
+      text-decoration: none;
+    }
+  }
+`;
+
+const ImageWrapper = styled.div`
+  > div {
+    height: 100%;
+    left: 0;
+    position: absolute !important;
+    top: 0;
+    width: 100%;
+    > div {
+      position: static !important;
+    }
+  }
+`;
+
+const Overlay = styled.div`
+  background-color: #f89b33;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+`;
+
+const overlay = ['#f76262', '#216583', '#65c0ba', '#35477d', '#6c5b7b', '#203541', '#9951ff', '#480032'];
 
 class CaseIndex extends React.Component {
   render() {
@@ -25,24 +94,26 @@ class CaseIndex extends React.Component {
         <Bio>
           <div dangerouslySetInnerHTML={{ __html: bio }} />
         </Bio>
-        {posts.map(({ node }) => {
-          const title = get(node, 'frontmatter.title') || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          )
-        })}
+        <Wrapper>
+          {posts.map(({ node }) => {
+            const overlayColor = sample(overlay);
+            const title = get(node, 'frontmatter.title') || node.fields.slug
+            return (
+              <Item key={node.fields.slug}>
+                <Content>
+                  <ImageWrapper>
+                    <Image fluid={node.frontmatter.image.childImageSharp.fluid} />
+                  </ImageWrapper>
+                  <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
+                    <Overlay style={{ backgroundColor: overlayColor }} />
+                    <h2>{title}</h2>
+                    <div>{node.frontmatter.projectInfo}</div>
+                  </Link>
+                </Content>
+              </Item>
+            )
+          })}
+        </Wrapper>
       </Layout>
     )
   }
@@ -75,13 +146,20 @@ export const blogIndexFragment = graphql`
       ) {
       edges {
         node {
-          excerpt
           fields {
             slug
           }
           frontmatter {
             date(formatString: "LL")
             title
+            projectInfo
+            image {
+              childImageSharp {
+                fluid(maxWidth: 420) {
+                  ...GatsbyImageSharpFluid_noBase64
+                }
+              }
+            }
           }
         }
       }
