@@ -23,4 +23,4 @@ For those of you who have not heard about it, [Xamarin](http://xamarin.com/) is 
 
 So after playing with it a while, we felt confident about building this app, and learning new things for our client's mobile applications.
 
-[Drupal and Xamarin, building the Axai mobile application: Part 2](/en/node/30)
+[Drupal and Xamarin, building the Axai mobile application: Part 2](/en/blog/drupal-and-xamarin-building-the-axai-mobile-application-part-2)
