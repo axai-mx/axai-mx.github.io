@@ -1,10 +1,10 @@
 ---
 type: language
-language: en
-language_label: "English"
-menu_label: "Start"
-title: "Axai, the Drupal experts in Mexico"
-description: "Advanced solutions in content management."
+language: es
+language_label: "Español"
+menu_label: "Inicio"
+title: "Axai, los expertos en Drupal"
+description: "Soluciones avanzadas para manejo de contenidos."
 ---
 
-We develop websites and web applications using Drupal, THE Content Management System.
+Desarrollamos sitios y aplicaciones web en Drupal, el sistema de administración de contenidos.
