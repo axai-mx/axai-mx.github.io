@@ -33,7 +33,7 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
-              <small>{node.frontmatter.date}</small>
+              <small>{node.frontmatter.user} - {node.frontmatter.date}</small>
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </div>
           )
@@ -78,6 +78,7 @@ export const blogIndexFragment = graphql`
           frontmatter {
             date(formatString: "LL")
             title
+            user
           }
         }
       }

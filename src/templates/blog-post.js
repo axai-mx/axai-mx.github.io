@@ -33,7 +33,7 @@ class BlogPostTemplate extends React.Component {
             marginTop: rhythm(-1),
           }}
         >
-          {post.frontmatter.date}
+          {post.frontmatter.user} - {post.frontmatter.date}
         </p>
         {image}
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -100,6 +100,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        user
         date(formatString: "MMMM DD, YYYY")
         translations
         image {
