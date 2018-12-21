@@ -16,6 +16,8 @@ class BlogPostTemplate extends React.Component {
     const siteDescription = post.excerpt
     const { previous, next } = this.props.pageContext
     const image = post.frontmatter.image ? <Image sizes={post.frontmatter.image.childImageSharp.sizes} /> : ''
+    const language = this.props.pageContext.language
+    const userLink = `${language}/` + (language == 'es' ? 'personas' : 'people') + `/${post.frontmatter.user}`
 
     return (
       <Layout location={this.props.location} config={this.props.data.config} translations={post.frontmatter.translations}>
@@ -33,7 +35,7 @@ class BlogPostTemplate extends React.Component {
             marginTop: rhythm(-1),
           }}
         >
-          {post.frontmatter.user} - {post.frontmatter.date}
+          <Link to={userLink}>{post.frontmatter.user}</Link> - {post.frontmatter.date}
         </p>
         {image}
         <div dangerouslySetInnerHTML={{ __html: post.html }} />

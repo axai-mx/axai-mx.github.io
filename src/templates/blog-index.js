@@ -12,6 +12,7 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
     const siteTitle = get(config, 'frontmatter.title')
     const description = get(config, 'frontmatter.description')
+    const language = this.props.pageContext.language
 
     return (
       <Layout location={this.props.location} config={config} translations={config.frontmatter.translations}>
@@ -22,6 +23,7 @@ class BlogIndex extends React.Component {
         />
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
+          const userLink = `${language}/` + (language == 'es' ? 'personas' : 'people') + `/${node.frontmatter.user}`
           return (
             <div key={node.fields.slug}>
               <h3
@@ -33,7 +35,7 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
-              <small>{node.frontmatter.user} - {node.frontmatter.date}</small>
+              <small><Link to={userLink}>{node.frontmatter.user}</Link> - {node.frontmatter.date}</small>
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </div>
           )
