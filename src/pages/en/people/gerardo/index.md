@@ -14,7 +14,7 @@ Gerardo started his career as a web developer in Python (Django) around 2007 in 
 
 Before becoming involved in Drupal again, he worked for a big company as a software developer engineer, his collaborations were mostly on real time operating systems and driver development for the retail industry.
 
-He crossed paths with Drupal again recently on axai, where he has been actively developing large scale solutions for national and international clients, contributing patches to Drupal 8 core and getting involved with cross platform and native mobile solutions for new projects.
+He crossed paths with Drupal again on axai and now working at [Bixal](http://www.bixal.com), where he develops large scale solutions for national and international clients, contributing patches to Drupal 8 core and getting involved with cross platform and native mobile solutions for new projects.
 
 You can find him on Drupal.org and in IRC as **g3r4**.
 
