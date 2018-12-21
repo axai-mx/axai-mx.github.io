@@ -200,6 +200,57 @@ exports.createPages = ({ graphql, actions }) => {
         })
       )
     })
+
+    const person = path.resolve('./src/templates/person.js')
+    _.each(['en', 'es'], (language) => {
+      resolve(
+        graphql(
+          `
+            {
+              allMarkdownRemark(
+                  sort: { fields: [frontmatter___date], order: DESC }, limit: 1000
+                  filter: {frontmatter: {
+                    language: { eq: "${language}" }
+                    type: { eq: "user" }
+                  }}
+                ) {
+                edges {
+                  node {
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      title
+                      nick
+                    }
+                  }
+                }
+              }
+            }
+          `
+        ).then(result => {
+          if (result.errors) {
+            console.log(result.errors)
+            reject(result.errors)
+          }
+
+          // Create blog posts pages.
+          const posts = result.data.allMarkdownRemark.edges;
+
+          _.each(posts, (post, index) => {
+            createPage({
+              path: post.node.fields.slug,
+              component: person,
+              context: {
+                slug: post.node.fields.slug,
+                language,
+                user: post.node.frontmatter.nick,
+              },
+            })
+          })
+        })
+      )
+    })
   })
 }
 
